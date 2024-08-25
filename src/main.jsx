@@ -7,6 +7,8 @@ import RegisterContainer from './components/RegisterContainer'
 import LoginContainer from './components/LoginContainer'
 import { AuthProvider } from './contexts/authContext'
 import Anonymous from './components/Anonymous'
+import CreateRecipeContainer from './components/Recipe/CreateRecipeContainer'
+import Protected from './components/Protected'
 
 const router = createBrowserRouter([
   {
@@ -23,8 +25,13 @@ const router = createBrowserRouter([
         element: <Anonymous><LoginContainer /></Anonymous>
       },
       {
-        path: '/recipes',
-        element: <h1>Recipes</h1>
+        path: 'recipes',
+        children: [
+          {
+            path: 'new',
+            element: <Protected><CreateRecipeContainer /></Protected>
+          }
+        ]
       }
     ]
   }
