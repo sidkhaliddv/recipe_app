@@ -9,6 +9,8 @@ import { AuthProvider } from './contexts/authContext'
 import Anonymous from './components/Anonymous'
 import CreateRecipeContainer from './components/Recipe/CreateRecipeContainer'
 import Protected from './components/Protected'
+import UpdateRecipeContainer from './components/Recipe/UpdateRecipeContainer'
+import NotFound from './components/NotFound'
 
 const router = createBrowserRouter([
   {
@@ -30,11 +32,20 @@ const router = createBrowserRouter([
           {
             path: 'new',
             element: <Protected><CreateRecipeContainer /></Protected>
+          },
+          {
+            path: ':recipeId/edit',
+            element: <Protected><UpdateRecipeContainer /></Protected>
           }
         ]
+      },
+      {
+        path: 'not_found',
+        element: <NotFound />
       }
-    ]
-  }
+    ],
+  },
+  
 ])
 
 createRoot(document.getElementById('root')).render(

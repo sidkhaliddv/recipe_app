@@ -6,12 +6,19 @@ const useRecipe = () => {
   const saveRecipe = async (newRecipe) => {
     const savedRecipe = await new RecipeService().save_recipe({...newRecipe, userId: currentUser.uid})
     console.log(savedRecipe)
-    // if (savedRecipe) return savedRecipe;
-
-    // throw "Recipe was not saved"
   }
 
-  return { saveRecipe, }
+  const getRecipe = async (id) => {
+    const recipe = await new RecipeService().get_recipe(id)
+    return recipe
+  }
+
+  const updateRecipe = async(id, recipe) => {
+    const savedRecipe = await new RecipeService().update_recipe(id, recipe)
+    return savedRecipe;
+  }
+
+  return { saveRecipe, getRecipe, updateRecipe }
 }
 
 export default useRecipe;
