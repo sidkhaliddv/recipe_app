@@ -17,7 +17,7 @@ const Navbar = () => {
         <div className="flex justify-between">
           <div className="flex">
             <h1 className="inline-grid items-center">My Recipes</h1>
-            <input type="text" name="" placeholder="Search Recipes..." className="ml-2 p-2 bg-gray-200 border border-blue-600 focus:outline-none" id="" />
+            <input type="text" name="" placeholder="Search Recipes..." className="ml-2 p-2 bg-gray-200 border border-cyan-400 rounded-lg focus:outline-none" id="" />
           </div>
           <div className="inline-grid items-center">
             <button type="button" className="border-2" onClick={handleClick}>{currentUser ? 'Logout' : 'Sign in'}</button>

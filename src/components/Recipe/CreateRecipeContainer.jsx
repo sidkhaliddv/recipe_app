@@ -1,6 +1,9 @@
+import useRecipe from "../../hooks/useRecipe"
 import RecipeForm from "./RecipeForm"
 
 const CreateRecipeContainer = () => {
+  console.log('in recipe creation')
+  const { saveRecipe } = useRecipe()
   const initialValues = {title: '', steps: [{position: 1, step: ''}]}
 
   const validate = (values) => {
@@ -29,14 +32,18 @@ const CreateRecipeContainer = () => {
 
   const handleSubmit = (values) => {
     console.log('Recipe submitted', values)
+    saveRecipe(values);
   }
 
   return (
     <>
-      <RecipeForm
-        initialValues={initialValues}
-        validate={validate}
-        handleSubmit={handleSubmit} />
+      <div className="mt-10 px-4 md:px-0">
+        <h1 className="text-4xl md:w-2/3 mx-auto">Create a recipe...</h1>
+        <RecipeForm
+          initialValues={initialValues}
+          validate={validate}
+          handleSubmit={handleSubmit} />
+      </div>
     </>
   )
 }
