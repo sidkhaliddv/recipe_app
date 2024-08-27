@@ -1,7 +1,8 @@
-import { collection, addDoc, getDocs, getDoc, doc, updateDoc } from "firebase/firestore"; 
+import { collection, addDoc, getDocs, getDoc, doc, updateDoc, query, where, startAt, startAfter, limit, orderBy } from "firebase/firestore"; 
 import { db } from "../../../firebase";
 
 const COLLECTION_NAME = 'recipes'
+const PAGINATION_LIMIT = 2
 
 class RecipeService {
   constructor(){}
@@ -36,6 +37,15 @@ class RecipeService {
 
     const updatedRecipe = updateDoc(doc(db, 'recipes', id), recipe)
     return updatedRecipe
+  }
+
+  async get_user_recipes(userId, last="Create a recipe...") {
+    if (!userId) return null;
+
+    const recipeQuery = query(collection(db, 'recipes'), where('userId', '==', userId))
+    const recipesDocs = await getDocs(recipeQuery)
+    const recipes = recipesDocs.docs.map((recipe)=>({id: recipe.id, ...recipe.data()}))
+    return recipes
   }
 }
 

@@ -18,7 +18,12 @@ const useRecipe = () => {
     return savedRecipe;
   }
 
-  return { saveRecipe, getRecipe, updateRecipe }
+  const getUserRecipe = async(userId) => {
+    const recipes = await new RecipeService().get_user_recipes(userId)
+    return recipes;
+  }
+
+  return { saveRecipe, getRecipe, updateRecipe, getUserRecipe }
 }
 
 export default useRecipe;
