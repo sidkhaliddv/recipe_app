@@ -26,7 +26,7 @@ class RecipeService {
 
     const recipe = await getDoc(doc(db, COLLECTION_NAME, id))
     if (recipe.exists()){
-      return recipe.data()
+      return ({...recipe.data(), id: recipe.id})
     } else {
       return null;
     }

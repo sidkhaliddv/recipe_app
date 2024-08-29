@@ -9,6 +9,7 @@ const useRecipe = () => {
   }
 
   const getRecipe = async (id) => {
+    console.log('recipe found')
     const recipe = await new RecipeService().get_recipe(id)
     return recipe
   }

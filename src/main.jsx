@@ -12,6 +12,7 @@ import Protected from './components/Protected'
 import UpdateRecipeContainer from './components/Recipe/UpdateRecipeContainer'
 import NotFound from './components/NotFound'
 import MyRecipes from './components/Recipe/MyRecipes'
+import RecipeShowContainer from './components/Recipe/RecipeShowContainer'
 
 const router = createBrowserRouter([
   {
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
           {
             path: 'my',
             element: <Protected><MyRecipes /> </Protected>,
+          },
+          {
+            path: ':recipeId',
+            element: <RecipeShowContainer />
           }
         ]
       },
