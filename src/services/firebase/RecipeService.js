@@ -47,6 +47,11 @@ class RecipeService {
     const recipes = recipesDocs.docs.map((recipe)=>({id: recipe.id, ...recipe.data()}))
     return recipes
   }
+
+  async get_reipes() {
+    const recipes = await getDocs(collection(db, 'recipes'))
+    return recipes.docs.map((recipe)=>({...recipe.data(), id: recipe.id}))
+  }
 }
 
 export {
