@@ -21,7 +21,7 @@ const RecipeShowContainer = () => {
         if (recipe.userId == currentUser?.uid) setCanEdit(true);
       }
     })()
-  }, [currentUser])
+  }, [currentUser, recipeId])
   return (
     <>
       {recipe && <RecipeShow recipe={recipe} canEdit={canEdit} />}

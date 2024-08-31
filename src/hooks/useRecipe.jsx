@@ -29,7 +29,12 @@ const useRecipe = () => {
     return recipes;
   }
 
-  return { saveRecipe, getRecipe, updateRecipe, getUserRecipe, getRecipes }
+  const search_recipes = async (title) => {
+    const recipes = await new RecipeService().search_recipes(title);
+    return recipes;
+  }
+
+  return { saveRecipe, getRecipe, updateRecipe, getUserRecipe, getRecipes, search_recipes }
 }
 
 export default useRecipe;

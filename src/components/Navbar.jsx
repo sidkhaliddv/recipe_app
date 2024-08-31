@@ -1,8 +1,11 @@
-import { useNavigate } from "react-router-dom";
+import { redirectDocument, useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
+import useRecipe from "../hooks/useRecipe";
+import RecipeSearchContainer from "./Recipe/RecipeSearchContainer";
 
 const Navbar = () => {
   const { currentUser, logout } = useAuth()
+  const { search_recipes } = useRecipe();
   const navigate = useNavigate()
   const handleClick = async ()=>{
     if(currentUser) {
@@ -17,7 +20,8 @@ const Navbar = () => {
         <div className="flex justify-between">
           <div className="flex">
             <button className="inline-grid items-center" onClick={()=>navigate('/recipes')}>My Recipes</button>
-            <input type="text" name="" placeholder="Search Recipes..." className="ml-2 p-2 bg-gray-200 border border-cyan-400 rounded-lg focus:outline-none hover:shadow-xl hover:border-cyan-600 focus:shadow-xl focus:border-cyan-600" id="" />
+            <RecipeSearchContainer />
+            {/* <input type="text" name="" placeholder="Search Recipes..." className="ml-2 p-2 bg-gray-200 border border-cyan-400 rounded-lg focus:outline-none hover:shadow-xl hover:border-cyan-600 focus:shadow-xl focus:border-cyan-600" id="" /> */}
           </div>
           <div className="flex mx-2">
             {currentUser && <div className="inline-grid">
