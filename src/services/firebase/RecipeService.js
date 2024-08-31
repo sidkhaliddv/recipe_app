@@ -1,4 +1,4 @@
-import { collection, addDoc, getDocs, getDoc, doc, updateDoc, query, where, startAt, startAfter, limit, orderBy } from "firebase/firestore"; 
+import { collection, addDoc, getDocs, getDoc, doc, updateDoc, query, where, startAt, startAfter, limit, orderBy, endAt } from "firebase/firestore"; 
 import { db } from "../../../firebase";
 
 const COLLECTION_NAME = 'recipes'
@@ -50,6 +50,17 @@ class RecipeService {
 
   async get_reipes() {
     const recipes = await getDocs(collection(db, 'recipes'))
+    return recipes.docs.map((recipe)=>({...recipe.data(), id: recipe.id}))
+  }
+
+  async search_recipes(title) {
+    console.log('title', title)
+    const q = query(collection(db, 'recipes'), orderBy('title'), startAt(title), endAt(title+'\uf8ff'));
+    const recipes = await getDocs(q);
+    return this.map_recipes(recipes);
+  }
+
+  map_recipes(recipes) {
     return recipes.docs.map((recipe)=>({...recipe.data(), id: recipe.id}))
   }
 }
